@@ -1,0 +1,21 @@
+{  
+   "type":"notifications",
+   "id":"634444a1-b1dc-4be3-bcf3-64c596a06b2d",
+   "data":{  
+      "attributes":{  
+         "custom":{  
+            "repo_url":"git@github.com:testrepo/testproject.git",
+            "version_updates":[  
+               {  
+                  "version":"3.4.1",
+                  "latest_version":"3.4.2",
+                  "name":"io.vertx:vertx-web",
+                  "ecosystem":"maven"
+               }
+            ]
+         },
+         "type":"analytics.notify.version",
+         "id":"git@github.com:testrepo/testproject.git"
+      }
+   }
+}
