@@ -99,18 +99,15 @@
           <th style="text-align: center;">Current Version</th>
           <th style="text-align: center;">Latest Version</th>
         </tr>
+        {{ range $depsInd, $dependency := .custom.version_updates }}
         <tr>
-          <td>#01</td>
-          <td>com.logback.core</td>
-          <td style="text-align: center;">2.0</td>
-          <td style="text-align: center;">2.1</td>
+          <td>#{{inc $depsInd}}</td>
+          <td>{{$dependency.name}}</td>
+          <td style="text-align: center;">{{$dependency.version}}</td>
+          <td style="text-align: center;">{{$dependency.latest_version}}</td>
+          <td></td>
         </tr>
-        <tr>
-          <td>#02</td>
-          <td>com.logback.web</td>
-          <td style="text-align: center;">1.5</td>
-          <td style="text-align: center;">1.8</td>
-        </tr>
+        {{ end }}
       </table>
     </div>
     <div style="
