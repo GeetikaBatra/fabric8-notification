@@ -17,7 +17,7 @@ const (
 var notifiers = map[NotificationType][]string{
 	AnalyticsNotifyCVE: {"fabric8-gemini-server"},
 	UserEmailUpdate:    {"fabric8-auth"},
-	AnalyticsNotifyVersion: {"fabric8-analytic-notification-scheduler"},
+	AnalyticsNotifyVersion: {"fabric8-gemini-server"},
 }
 
 func (nType NotificationType) Notifiers() []string {
