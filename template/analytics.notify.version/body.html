@@ -87,7 +87,7 @@
       </div>
       <div style="margin-top: 15px;color:#363636;font-weight: 600;">
           <span>Direct dependencies with latest version:</span>
-          <span> 04</span>
+          <span> {{ len .custom.version_updates }}</span>
       </div>
       <div style="margin-top: 25px;">
         <span style="color:#72767B;font-weight: 600;">Details of direct dependencies</span>
@@ -105,7 +105,6 @@
           <td>{{$dependency.name}}</td>
           <td style="text-align: center;">{{$dependency.version}}</td>
           <td style="text-align: center;">{{$dependency.latest_version}}</td>
-          <td></td>
         </tr>
         {{ end }}
       </table>
