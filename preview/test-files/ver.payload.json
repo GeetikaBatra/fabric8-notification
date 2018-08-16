@@ -1,6 +1,4 @@
 {  
-   "type":"notifications",
-   "id":"634444a1-b1dc-4be3-bcf3-64c596a06b2d",
    "data":{  
       "attributes":{  
          "custom":{  
@@ -16,6 +14,8 @@
          },
          "type":"analytics.notify.version",
          "id":"git@github.com:testrepo/testproject.git"
-      }
+      },
+      "type":"notifications",
+      "id":"634444a1-b1dc-4be3-bcf3-64c596a06b2d"
    }
 }
