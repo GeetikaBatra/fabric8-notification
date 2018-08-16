@@ -8,12 +8,14 @@
                {  
                   "version":"3.4.1",
                   "latest_version":"3.4.2",
-                  "name":"io.vertx:vertx-web"
+                  "name":"io.vertx:vertx-web",
+                  "ecosystem":"maven"
                },
                {  
                   "version":"3.5.0",
                   "latest_version":"3.5.1",
-                  "name":"io.vertx:vertx-util"
+                  "name":"io.vertx:vertx-util",
+                  "ecosystem":"maven"
                }
             ]
          },
