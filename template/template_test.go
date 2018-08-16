@@ -321,26 +321,6 @@ func TestRenderCVE(t *testing.T) {
 	}
 }
 
-func checkCVEBody(t *testing.T, body string, custom map[string]interface{}) {
-	t.Helper()
-	assert.True(t, strings.Contains(body, toString(custom["repo_url"])))
-	assert.True(t, strings.Contains(body, toString(custom["scanned_at"])))
-
-	depArr := toArrMap(custom["vulnerable_deps"])
-	assert.NotNil(t, depArr)
-
-	for _, dep := range depArr {
-		assert.True(t, strings.Contains(body, toString(dep["name"])))
-		cveArr := toArrMap(dep["cves"])
-		assert.NotNil(t, depArr)
-		for _, cve := range cveArr {
-			assert.True(t, strings.Contains(body, toString(cve["CVE"])))
-			cvss := fmt.Sprintf("[%s/10]", toString(cve["CVSS"]))
-			assert.True(t, strings.Contains(body, cvss))
-		}
-	}
-}
-
 func TestRenderVersion(t *testing.T) {
 	files := []string{"version"}
 	reg := template.AssetRegistry{}
@@ -366,6 +346,26 @@ func TestRenderVersion(t *testing.T) {
 	}
 }
 
+func checkCVEBody(t *testing.T, body string, custom map[string]interface{}) {
+	t.Helper()
+	assert.True(t, strings.Contains(body, toString(custom["repo_url"])))
+	assert.True(t, strings.Contains(body, toString(custom["scanned_at"])))
+
+	depArr := toArrMap(custom["vulnerable_deps"])
+	assert.NotNil(t, depArr)
+
+	for _, dep := range depArr {
+		assert.True(t, strings.Contains(body, toString(dep["name"])))
+		cveArr := toArrMap(dep["cves"])
+		assert.NotNil(t, depArr)
+		for _, cve := range cveArr {
+			assert.True(t, strings.Contains(body, toString(cve["CVE"])))
+			cvss := fmt.Sprintf("[%s/10]", toString(cve["CVSS"]))
+			assert.True(t, strings.Contains(body, cvss))
+		}
+	}
+}
+
 func checkVersionBody(t *testing.T, body string, custom map[string]interface{}) {
 	t.Helper()
 	assert.True(t, strings.Contains(body, toString(custom["repo_url"])))
@@ -376,8 +376,9 @@ func checkVersionBody(t *testing.T, body string, custom map[string]interface{}) 
 
 	for _, dep := range depArr {
 		assert.True(t, strings.Contains(body, toString(dep["name"])))
-		assert.True(t, strings.Contains(body, toString(dep["latest_version"])))
 		assert.True(t, strings.Contains(body, toString(dep["version"])))
+		assert.True(t, strings.Contains(body, toString(dep["latest_version"])))
+		assert.True(t, strings.Contains(body, toString(dep["ecosystem"])))
 	}
 }
 

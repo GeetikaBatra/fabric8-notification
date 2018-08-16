@@ -98,6 +98,7 @@
           <th>Direct dependency</th> 
           <th style="text-align: center;">Current Version</th>
           <th style="text-align: center;">Latest Version</th>
+          <th style="text-align: center;">Ecosystem</th>
         </tr>
         {{ range $depsInd, $dependency := .custom.version_updates }}
         <tr>
@@ -105,6 +106,7 @@
           <td>{{$dependency.name}}</td>
           <td style="text-align: center;">{{$dependency.version}}</td>
           <td style="text-align: center;">{{$dependency.latest_version}}</td>
+          <td style="text-align: center;">{{$dependency.ecosystem}}</td>
         </tr>
         {{ end }}
       </table>

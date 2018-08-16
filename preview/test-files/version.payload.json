@@ -8,7 +8,8 @@
                {  
                   "version":"3.4.1",
                   "latest_version":"3.4.2",
-                  "name":"io.vertx:vertx-web"
+                  "name":"io.vertx:vertx-web",
+                  "ecosystem":"maven"
                }
             ]
          },
