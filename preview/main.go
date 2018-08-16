@@ -105,7 +105,7 @@ func generate(authClient *authapi.Client, c *api.Client, id, tmplName string) er
 		}
 	} else if strings.HasPrefix(tmplName, "analytics.notify.version") {
 		vars = make(map[string]interface{})
-		payload, err := testsupport.GetFileContent("preview/test-files/ver.payload.json")
+		payload, err := testsupport.GetFileContent("preview/test-files/version.payload.json")
 		if err == nil {
 			vars["custom"] = testsupport.GetCustomElement(payload)
 		}
