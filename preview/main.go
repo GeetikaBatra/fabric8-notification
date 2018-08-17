@@ -109,7 +109,7 @@ func generate(authClient *authapi.Client, c *api.Client, id, tmplName string) er
 		if err == nil {
 			vars["custom"] = testsupport.GetCustomElement(payload)
 		}
-	}else {
+	} else {
 		return fmt.Errorf("Unkown resolver for template %v", tmplName)
 	}
 
