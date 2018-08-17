@@ -51,12 +51,12 @@ func main() {
 		}, "failed to create token manager")
 	}
 
-	err = config.Validate()
-	if err != nil {
-		log.Panic(nil, map[string]interface{}{
-			"err": err,
-		}, "Missing required configuration")
-	}
+	// err = config.Validate()
+	// if err != nil {
+	// 	log.Panic(nil, map[string]interface{}{
+	// 		"err": err,
+	// 	}, "Missing required configuration")
+	// }
 
 	witClient, err := wit.NewCachedClient(config.GetWITURL())
 	if err != nil {

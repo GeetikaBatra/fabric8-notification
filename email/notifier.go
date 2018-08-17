@@ -2,7 +2,7 @@ package email
 
 import (
 	"context"
-
+	"fmt"
 	"github.com/fabric8-services/fabric8-notification/collector"
 	"github.com/fabric8-services/fabric8-notification/template"
 	"github.com/fabric8-services/fabric8-wit/log"
@@ -105,6 +105,8 @@ func (a *AsyncWorkerNotifier) do(cn contextualNotification) {
 
 		return
 	}
+	fmt.Println("****************************Reached here")
+	fmt.Println(subject, body, headers, receivers)
 	a.Sender.Send(ctx, subject, body, headers, receivers)
 }
 

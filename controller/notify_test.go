@@ -207,7 +207,12 @@ func TestValidateNotifier(t *testing.T) {
 		ctx := goajwt.WithJWT(context.Background(), jwt.NewWithClaims(jwt.SigningMethodRS512, claims))
 		assert.True(t, validateNotifier(ctx, types.AnalyticsNotifyCVE.Notifiers()))
 	})
-
+	t.Run("service_allowed", func(t *testing.T) {
+		claims := jwt.MapClaims{}
+		claims["service_accountname"] = "fabric8-gemini-server"
+		ctx := goajwt.WithJWT(context.Background(), jwt.NewWithClaims(jwt.SigningMethodRS512, claims))
+		assert.True(t, validateNotifier(ctx, types.AnalyticsNotifyCVE.Notifiers()))
+	})
 	t.Run("service_not_allowed", func(t *testing.T) {
 		claims := jwt.MapClaims{}
 		claims["service_accountname"] = "test-service"

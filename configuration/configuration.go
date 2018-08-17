@@ -74,8 +74,8 @@ func (c *Data) setConfigDefaults() {
 	//-----
 	// HTTP
 	//-----
-	c.v.SetDefault(varHTTPAddress, "0.0.0.0:8080")
-	c.v.SetDefault(varMetricsHTTPAddress, "0.0.0.0:8080")
+	c.v.SetDefault(varHTTPAddress, "0.0.0.0:8081")
+	c.v.SetDefault(varMetricsHTTPAddress, "0.0.0.0:8081")
 
 	c.v.SetDefault(varWITURL, defaultWITURL)
 	c.v.SetDefault(varAuthURL, defaultAuthURL)
@@ -91,7 +91,7 @@ func (c *Data) setConfigDefaults() {
 	c.v.SetDefault(varServiceAccountID, "4c34f6d4-f00b-487b-9a1f-e7d1adba6866")
 	c.v.SetDefault(varServiceAccountSecret, "secret")
 
-	// c.v.SetDefault(varMadrillAPIKey, "1234") // Enable for local testing.
+	c.v.SetDefault(varMadrillAPIKey, "eHh4eHh4") // Enable for local testing.
 }
 
 // GetHTTPAddress returns the HTTP address (as set via default, config file, or environment variable)
@@ -171,6 +171,6 @@ func (c *Data) Validate() error {
 
 const (
 	defaultWITURL   = "https://api.openshift.io/"
-	defaultAuthURL  = "http://localhost:8089/"
+	defaultAuthURL  = "https://auth.prod-preview.openshift.io"
 	defaultLogLevel = "info"
 )
