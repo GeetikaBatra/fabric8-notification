@@ -350,14 +350,24 @@ func checkCVEBody(t *testing.T, body string, custom map[string]interface{}) {
 	t.Helper()
 	assert.True(t, strings.Contains(body, toString(custom["repo_url"])))
 	assert.True(t, strings.Contains(body, toString(custom["scanned_at"])))
-
-	depArr := toArrMap(custom["vulnerable_deps"])
-	assert.NotNil(t, depArr)
-
-	for _, dep := range depArr {
+	assert.True(t, strings.Contains(body, toString(custom["total_dependencies"])))
+	dirDepArr := toArrMap(custom["direct_updates"])
+	assert.NotNil(t, dirDepArr)
+	transDepArr := toArrMap(custom["transitive_updates"])
+	for _, dep := range dirDepArr {
 		assert.True(t, strings.Contains(body, toString(dep["name"])))
 		cveArr := toArrMap(dep["cves"])
-		assert.NotNil(t, depArr)
+		assert.NotNil(t, dirDepArr)
+		for _, cve := range cveArr {
+			assert.True(t, strings.Contains(body, toString(cve["CVE"])))
+			cvss := fmt.Sprintf("[%s/10]", toString(cve["CVSS"]))
+			assert.True(t, strings.Contains(body, cvss))
+		}
+	}
+	for _, dep := range transDepArr {
+		assert.True(t, strings.Contains(body, toString(dep["name"])))
+		cveArr := toArrMap(dep["cves"])
+		assert.NotNil(t, dirDepArr)
 		for _, cve := range cveArr {
 			assert.True(t, strings.Contains(body, toString(cve["CVE"])))
 			cvss := fmt.Sprintf("[%s/10]", toString(cve["CVSS"]))
@@ -371,10 +381,19 @@ func checkVersionBody(t *testing.T, body string, custom map[string]interface{}) 
 	assert.True(t, strings.Contains(body, toString(custom["repo_url"])))
 	assert.True(t, strings.Contains(body, toString(custom["scanned_at"])))
 
-	depArr := toArrMap(custom["version_updates"])
-	assert.NotNil(t, depArr)
+	dirDepArr := toArrMap(custom["direct_updates"])
+	assert.NotNil(t, dirDepArr)
 
-	for _, dep := range depArr {
+	transDepArr := toArrMap(custom["transitive_updates"])
+	assert.NotNil(t, transDepArr)
+
+	for _, dep := range dirDepArr {
+		assert.True(t, strings.Contains(body, toString(dep["name"])))
+		assert.True(t, strings.Contains(body, toString(dep["version"])))
+		assert.True(t, strings.Contains(body, toString(dep["latest_version"])))
+		assert.True(t, strings.Contains(body, toString(dep["ecosystem"])))
+	}
+	for _, dep := range transDepArr {
 		assert.True(t, strings.Contains(body, toString(dep["name"])))
 		assert.True(t, strings.Contains(body, toString(dep["version"])))
 		assert.True(t, strings.Contains(body, toString(dep["latest_version"])))
