@@ -384,8 +384,8 @@ func checkVersionBody(t *testing.T, body string, custom map[string]interface{}) 
 
 	transDepArr := toArrMap(custom["transitive_updates"])
 	assert.NotNil(t, transDepArr)
-	checkDepData(t, body, custom["direct_updates"])
-	checkDepData(t, body, custom["transitive_updates"])
+	checkDepData(t, body, dirDepArr)
+	checkDepData(t, body, transDepArr)
 }
 
 func checkDepData(t *testing.T, body string, deps interface{}) {

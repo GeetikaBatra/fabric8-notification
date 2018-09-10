@@ -10,6 +10,7 @@
     .deps {
       word-break: break-word;
       width: 30%;
+      text-align: center
     }
     .version{
       width: 20%;
@@ -115,7 +116,7 @@
         </tr>
         {{ range $depsInd, $dependency := .custom.direct_updates }}
         <tr>
-          <td >#{{inc $depsInd}}</td>
+          <td>#{{inc $depsInd}}</td>
           <td class="deps">{{$dependency.name}}</td>
           <td class="version">{{$dependency.version}}</td>
           <td class="cve">
