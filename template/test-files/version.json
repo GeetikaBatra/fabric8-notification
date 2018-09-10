@@ -11,19 +11,19 @@
                    "name":"io.vertx:vertx-core",
                    "ecosystem":"maven"
                 },
-                 {
+                {
+                    "version":"3.4.1",
+                    "latest_version":"3.4.2",
+                    "name":"io.vertx:vertx-web",
+                    "ecosystem":"maven"
+                }
+             ],
+             "direct_updates":[
+                {
                     "version":"3.4.2",
                     "latest_version":"3.4.3",
                     "name":"io.vertx:vertx-core",
                     "ecosystem":"maven"
-                 }
-             ],
-             "direct_updates":[
-                {
-                   "version":"3.4.1",
-                   "latest_version":"3.4.2",
-                   "name":"io.vertx:vertx-web",
-                   "ecosystem":"maven"
                 },
                 {
                     "version":"3.4.1",

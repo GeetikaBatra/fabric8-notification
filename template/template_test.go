@@ -386,14 +386,23 @@ func checkVersionBody(t *testing.T, body string, custom map[string]interface{}) 
 
 	transDepArr := toArrMap(custom["transitive_updates"])
 	assert.NotNil(t, transDepArr)
+}
 
-	for _, dep := range dirDepArr {
+func testTransitiveData(t *testing.T, body string, custom map[string]interface{}) {
+
+	transDepArr := toArrMap(custom["transitive_updates"])
+	for _, dep := range transDepArr {
 		assert.True(t, strings.Contains(body, toString(dep["name"])))
 		assert.True(t, strings.Contains(body, toString(dep["version"])))
 		assert.True(t, strings.Contains(body, toString(dep["latest_version"])))
 		assert.True(t, strings.Contains(body, toString(dep["ecosystem"])))
 	}
-	for _, dep := range transDepArr {
+}
+
+func testDirectData(t *testing.T, body string, custom map[string]interface{}) {
+
+	dirDepArr := toArrMap(custom["direct_updates"])
+	for _, dep := range dirDepArr {
 		assert.True(t, strings.Contains(body, toString(dep["name"])))
 		assert.True(t, strings.Contains(body, toString(dep["version"])))
 		assert.True(t, strings.Contains(body, toString(dep["latest_version"])))
