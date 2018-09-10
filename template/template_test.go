@@ -354,20 +354,18 @@ func checkCVEBody(t *testing.T, body string, custom map[string]interface{}) {
 	dirDepArr := toArrMap(custom["direct_updates"])
 	assert.NotNil(t, dirDepArr)
 	transDepArr := toArrMap(custom["transitive_updates"])
-	for _, dep := range dirDepArr {
+	assert.NotNil(t, transDepArr)
+
+	checkDepDataCVE(t, body, dirDepArr)
+	checkDepDataCVE(t, body, transDepArr)
+
+}
+
+func checkDepDataCVE(t *testing.T, body string, deps interface{}) {
+	deps_ := toArrMap(deps)
+	for _, dep := range deps_ {
 		assert.True(t, strings.Contains(body, toString(dep["name"])))
 		cveArr := toArrMap(dep["cves"])
-		assert.NotNil(t, dirDepArr)
-		for _, cve := range cveArr {
-			assert.True(t, strings.Contains(body, toString(cve["CVE"])))
-			cvss := fmt.Sprintf("[%s/10]", toString(cve["CVSS"]))
-			assert.True(t, strings.Contains(body, cvss))
-		}
-	}
-	for _, dep := range transDepArr {
-		assert.True(t, strings.Contains(body, toString(dep["name"])))
-		cveArr := toArrMap(dep["cves"])
-		assert.NotNil(t, dirDepArr)
 		for _, cve := range cveArr {
 			assert.True(t, strings.Contains(body, toString(cve["CVE"])))
 			cvss := fmt.Sprintf("[%s/10]", toString(cve["CVSS"]))
@@ -386,23 +384,13 @@ func checkVersionBody(t *testing.T, body string, custom map[string]interface{}) 
 
 	transDepArr := toArrMap(custom["transitive_updates"])
 	assert.NotNil(t, transDepArr)
+	checkDepData(t, body, custom["direct_updates"])
+	checkDepData(t, body, custom["transitive_updates"])
 }
 
-func testTransitiveData(t *testing.T, body string, custom map[string]interface{}) {
-
-	transDepArr := toArrMap(custom["transitive_updates"])
-	for _, dep := range transDepArr {
-		assert.True(t, strings.Contains(body, toString(dep["name"])))
-		assert.True(t, strings.Contains(body, toString(dep["version"])))
-		assert.True(t, strings.Contains(body, toString(dep["latest_version"])))
-		assert.True(t, strings.Contains(body, toString(dep["ecosystem"])))
-	}
-}
-
-func testDirectData(t *testing.T, body string, custom map[string]interface{}) {
-
-	dirDepArr := toArrMap(custom["direct_updates"])
-	for _, dep := range dirDepArr {
+func checkDepData(t *testing.T, body string, deps interface{}) {
+	deps_ := toArrMap(deps)
+	for _, dep := range deps_ {
 		assert.True(t, strings.Contains(body, toString(dep["name"])))
 		assert.True(t, strings.Contains(body, toString(dep["version"])))
 		assert.True(t, strings.Contains(body, toString(dep["latest_version"])))

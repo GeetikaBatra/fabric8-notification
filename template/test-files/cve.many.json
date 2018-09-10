@@ -4,7 +4,7 @@
       "custom": {
         "repo_url": "git@github.com:testrepo/manyproject.git",
         "scanned_at": "2018-06-18T12:25:24",
-        "cve_count": 3,
+        "cve_count": 18,
         "direct_updates": [
           {
             "name": "com.logback.core",

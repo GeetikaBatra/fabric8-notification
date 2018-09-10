@@ -11,10 +11,10 @@
                    "name":"io.vertx:vertx-core",
                    "ecosystem":"maven"
                 },
-                 {
-                    "version":"3.4.2",
-                    "latest_version":"3.4.3",
-                    "name":"io.vertx:vertx-core",
+                {
+                    "version":"3.4.1",
+                    "latest_version":"3.4.2",
+                    "name":"io.vertx:vertx-web",
                     "ecosystem":"maven"
                  }
              ],
@@ -26,9 +26,9 @@
                    "ecosystem":"maven"
                 },
                 {
-                    "version":"3.4.1",
-                    "latest_version":"3.4.2",
-                    "name":"io.vertx:vertx-web",
+                    "version":"3.4.2",
+                    "latest_version":"3.4.3",
+                    "name":"io.vertx:vertx-core",
                     "ecosystem":"maven"
                  }
              ]
