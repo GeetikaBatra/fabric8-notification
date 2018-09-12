@@ -2,6 +2,7 @@ package email
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/fabric8-services/fabric8-notification/collector"
 	"github.com/fabric8-services/fabric8-notification/template"
@@ -82,6 +83,7 @@ func (a *AsyncWorkerNotifier) do(cn contextualNotification) {
 		return
 	}
 	if receivers == nil || len(receivers) == 0 {
+		fmt.Println(receivers)
 		log.Info(ctx, map[string]interface{}{
 			"type": notification.Type,
 			"id":   notification.ID,
@@ -96,6 +98,7 @@ func (a *AsyncWorkerNotifier) do(cn contextualNotification) {
 	vars["custom"] = notification.CustomAttributes
 
 	subject, body, headers, err := notification.Template.Render(vars)
+	fmt.Println(body)
 	if err != nil {
 		log.Error(ctx, map[string]interface{}{
 			"type": notification.Type,

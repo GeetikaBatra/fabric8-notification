@@ -7,13 +7,13 @@ import (
 	"github.com/fabric8-services/fabric8-notification/app"
 	"github.com/fabric8-services/fabric8-notification/auth"
 	"github.com/fabric8-services/fabric8-notification/collector"
+	"github.com/fabric8-services/fabric8-notification/email"
 	"github.com/fabric8-services/fabric8-notification/types"
 	goaclient "github.com/goadesign/goa/client"
 	"github.com/prometheus/client_golang/prometheus"
 
 	"github.com/fabric8-services/fabric8-notification/configuration"
 	"github.com/fabric8-services/fabric8-notification/controller"
-	"github.com/fabric8-services/fabric8-notification/email"
 	"github.com/fabric8-services/fabric8-notification/jsonapi"
 	"github.com/fabric8-services/fabric8-notification/template"
 	"github.com/fabric8-services/fabric8-notification/token"
@@ -51,12 +51,12 @@ func main() {
 		}, "failed to create token manager")
 	}
 
-	err = config.Validate()
-	if err != nil {
-		log.Panic(nil, map[string]interface{}{
-			"err": err,
-		}, "Missing required configuration")
-	}
+	// err = config.Validate()
+	// if err != nil {
+	// 	log.Panic(nil, map[string]interface{}{
+	// 		"err": err,
+	// 	}, "Missing required configuration")
+	// }
 
 	witClient, err := wit.NewCachedClient(config.GetWITURL())
 	if err != nil {
